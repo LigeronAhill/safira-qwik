@@ -1,5 +1,5 @@
 {
-	"id": "948a876b-d8ee-4d3e-a381-541f6c008f1c",
+	"id": "7f3d2bea-f8ae-4e04-a105-04cb53c8dace",
 	"prevId": "00000000-0000-0000-0000-000000000000",
 	"version": "7",
 	"dialect": "postgresql",
@@ -10,19 +10,19 @@
 			"columns": {
 				"userId": {
 					"name": "userId",
-					"type": "text",
+					"type": "uuid",
 					"primaryKey": false,
 					"notNull": true
 				},
 				"type": {
 					"name": "type",
-					"type": "text",
+					"type": "varchar(255)",
 					"primaryKey": false,
 					"notNull": true
 				},
 				"provider": {
 					"name": "provider",
-					"type": "text",
+					"type": "varchar(255)",
 					"primaryKey": false,
 					"notNull": true
 				},
@@ -52,9 +52,9 @@
 				},
 				"token_type": {
 					"name": "token_type",
-					"type": "text",
+					"type": "varchar(255)",
 					"primaryKey": false,
-					"notNull": false
+					"notNull": true
 				},
 				"scope": {
 					"name": "scope",
@@ -105,7 +105,7 @@
 				},
 				"userId": {
 					"name": "userId",
-					"type": "text",
+					"type": "uuid",
 					"primaryKey": false,
 					"notNull": true
 				},
@@ -182,7 +182,7 @@
 				},
 				"userId": {
 					"name": "userId",
-					"type": "text",
+					"type": "uuid",
 					"primaryKey": false,
 					"notNull": true
 				},
@@ -217,25 +217,27 @@
 			"columns": {
 				"id": {
 					"name": "id",
-					"type": "text",
+					"type": "uuid",
 					"primaryKey": true,
-					"notNull": true
+					"notNull": true,
+					"default": "gen_random_uuid()"
 				},
 				"name": {
 					"name": "name",
-					"type": "text",
+					"type": "varchar(255)",
 					"primaryKey": false,
-					"notNull": false
+					"notNull": true
 				},
 				"email": {
 					"name": "email",
-					"type": "text",
+					"type": "varchar(255)",
 					"primaryKey": false,
-					"notNull": false
+					"notNull": true
 				},
 				"role": {
 					"name": "role",
-					"type": "text",
+					"type": "user_role",
+					"typeSchema": "public",
 					"primaryKey": false,
 					"notNull": true,
 					"default": "'guest'"
@@ -251,6 +253,13 @@
 					"type": "text",
 					"primaryKey": false,
 					"notNull": false
+				},
+				"createdAt": {
+					"name": "createdAt",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
 				}
 			},
 			"indexes": {},
@@ -299,7 +308,13 @@
 			"isRLSEnabled": false
 		}
 	},
-	"enums": {},
+	"enums": {
+		"public.user_role": {
+			"name": "user_role",
+			"schema": "public",
+			"values": ["guest", "employee", "admin"]
+		}
+	},
 	"schemas": {},
 	"sequences": {},
 	"roles": {},

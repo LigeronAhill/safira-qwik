@@ -2,42 +2,36 @@ import type { AdapterAccountType } from "@auth/core/adapters";
 import {
 	boolean,
 	integer,
-	pgEnum,
 	pgTable,
 	primaryKey,
 	text,
 	timestamp,
-	uuid,
-	varchar,
 } from "drizzle-orm/pg-core";
 
-export const userRole = pgEnum("user_role", ["guest", "employee", "admin"]);
-
 export const users = pgTable("user", {
-	id: uuid("id").primaryKey().defaultRandom(),
-	name: varchar("name", { length: 255 }).notNull(),
-	email: varchar("email", { length: 255 }).notNull().unique(),
-	role: userRole().notNull().default("guest"),
+	id: text("id")
+		.primaryKey()
+		.$defaultFn(() => crypto.randomUUID()),
+	name: text("name"),
+	email: text("email").unique(),
+	role: text("role").notNull().default("guest"),
 	emailVerified: timestamp("emailVerified", { mode: "date" }),
 	image: text("image"),
-	createdAt: timestamp("createdAt", { mode: "date" }).notNull().defaultNow(),
 });
 
 export const accounts = pgTable(
 	"account",
 	{
-		userId: uuid("userId")
+		userId: text("userId")
 			.notNull()
 			.references(() => users.id, { onDelete: "cascade" }),
-		type: varchar("type", { length: 255 })
-			.$type<AdapterAccountType>()
-			.notNull(),
-		provider: varchar("provider", { length: 255 }).notNull(),
+		type: text("type").$type<AdapterAccountType>().notNull(),
+		provider: text("provider").notNull(),
 		providerAccountId: text("providerAccountId").notNull(),
 		refresh_token: text("refresh_token"),
 		access_token: text("access_token"),
 		expires_at: integer("expires_at"),
-		token_type: varchar("token_type", { length: 255 }).notNull(),
+		token_type: text("token_type"),
 		scope: text("scope"),
 		id_token: text("id_token"),
 		session_state: text("session_state"),
@@ -53,7 +47,7 @@ export const accounts = pgTable(
 
 export const sessions = pgTable("session", {
 	sessionToken: text("sessionToken").primaryKey(),
-	userId: uuid("userId")
+	userId: text("userId")
 		.notNull()
 		.references(() => users.id, { onDelete: "cascade" }),
 	expires: timestamp("expires", { mode: "date" }).notNull(),
@@ -79,7 +73,7 @@ export const authenticators = pgTable(
 	"authenticator",
 	{
 		credentialID: text("credentialID").notNull().unique(),
-		userId: uuid("userId")
+		userId: text("userId")
 			.notNull()
 			.references(() => users.id, { onDelete: "cascade" }),
 		providerAccountId: text("providerAccountId").notNull(),

@@ -49,3 +49,43 @@ biome-lint:
 commit NAME: biome-check
     git add .
     git commit -m "{{ NAME }}"
+
+# Push changes
+[group("git")]
+push:
+    git push
+
+# Generate SQL migration
+[group("database")]
+drizzle-gen:
+    bunx drizzle-kit generate
+
+# Apply generated SQL migration
+[group("database")]
+drizzle-apply: drizzle-gen
+    bunx drizzle-kit migrate
+
+# Push your Drizzle schema to database
+[group("database")]
+drizzle-push:
+    bunx drizzle-kit push
+
+# Pull(introspect) database schema
+[group("database")]
+drizzle-pull:
+    bunx drizzle-kit pull
+
+# check for any race conditions(collisions) of generated migrations
+[group("database")]
+drizzle-check:
+    bunx drizzle-kit check
+
+# Upgrade snapshots of previously generated migrations
+[group("database")]
+drizzle-up:
+    bunx drizzle-kit up
+
+# Convenient database browsing
+[group("database")]
+drizzle-studio:
+    bunx drizzle-kit studio

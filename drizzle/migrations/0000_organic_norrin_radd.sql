@@ -1,12 +1,13 @@
+CREATE TYPE "public"."user_role" AS ENUM('guest', 'employee', 'admin');--> statement-breakpoint
 CREATE TABLE "account" (
-	"userId" text NOT NULL,
-	"type" text NOT NULL,
-	"provider" text NOT NULL,
+	"userId" uuid NOT NULL,
+	"type" varchar(255) NOT NULL,
+	"provider" varchar(255) NOT NULL,
 	"providerAccountId" text NOT NULL,
 	"refresh_token" text,
 	"access_token" text,
 	"expires_at" integer,
-	"token_type" text,
+	"token_type" varchar(255) NOT NULL,
 	"scope" text,
 	"id_token" text,
 	"session_state" text
@@ -14,7 +15,7 @@ CREATE TABLE "account" (
 --> statement-breakpoint
 CREATE TABLE "authenticator" (
 	"credentialID" text NOT NULL,
-	"userId" text NOT NULL,
+	"userId" uuid NOT NULL,
 	"providerAccountId" text NOT NULL,
 	"credentialPublicKey" text NOT NULL,
 	"counter" integer NOT NULL,
@@ -26,17 +27,18 @@ CREATE TABLE "authenticator" (
 --> statement-breakpoint
 CREATE TABLE "session" (
 	"sessionToken" text PRIMARY KEY NOT NULL,
-	"userId" text NOT NULL,
+	"userId" uuid NOT NULL,
 	"expires" timestamp NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "user" (
-	"id" text PRIMARY KEY NOT NULL,
-	"name" text,
-	"email" text,
-	"role" text DEFAULT 'guest' NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"name" varchar(255) NOT NULL,
+	"email" varchar(255) NOT NULL,
+	"role" "user_role" DEFAULT 'guest' NOT NULL,
 	"emailVerified" timestamp,
 	"image" text,
+	"createdAt" timestamp DEFAULT now() NOT NULL,
 	CONSTRAINT "user_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
