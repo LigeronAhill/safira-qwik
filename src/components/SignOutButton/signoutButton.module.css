@@ -1,0 +1,33 @@
+.signout {
+	/* Basic Styling */
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	border: none;
+	border-radius: 5px;
+	/* Rounded corners */
+	transition: background-color 0.3s ease;
+	/* Smooth transition for hover */
+
+	/* Color Scheme (Red for Sign Out) */
+	background-color: #dc3545;
+	/* A standard red color */
+	color: white;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.signout-btn:hover {
+	background-color: #c82333;
+	/* Slightly darker red on hover */
+}
+
+.signout-btn:active {
+	background-color: #bd2130;
+	/* Even darker when clicked */
+	transform: translateY(1px);
+	/* Simple press effect */
+}
