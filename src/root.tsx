@@ -26,14 +26,14 @@ export default component$(() => {
 				<script
 					dangerouslySetInnerHTML={`
 						(function() {
-						try {
-						const theme = localStorage.getItem('theme');
-						const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+							try {
+								const theme = localStorage.getItem('theme');
+								const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-						if (theme === 'dark' || (!theme && prefersDark)) {
-						document.documentElement.setAttribute('data-theme', 'dark');
-						}
-						} catch(e) {}
+								if (theme === 'dark' || (!theme && prefersDark)) {
+									document.documentElement.setAttribute('data-theme', 'dark');
+								}
+							} catch(e) {}
 						})();
 					`}
 				></script>

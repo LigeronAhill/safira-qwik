@@ -11,6 +11,7 @@ import {
 import "@fontsource/chocolate-classical-sans";
 import "@fontsource-variable/montserrat";
 import "@fontsource/forum";
+import "@fontsource-variable/jetbrains-mono";
 import "@fontsource/material-icons";
 
 export const ThemeContext =
@@ -28,9 +29,12 @@ export default component$(() => {
 			const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
 			// Определяем начальную тему
-			const initialDark =
-				stored === "dark" || (stored === null && prefersDark.matches);
+			const initialDark = stored === "dark" || (!stored && prefersDark.matches);
 			isDark.value = initialDark;
+			document.documentElement.setAttribute(
+				"data-theme",
+				isDark.value ? "dark" : "light",
+			);
 
 			// Слушаем системные изменения темы
 			const updateFromSystem = (e: MediaQueryListEvent) => {

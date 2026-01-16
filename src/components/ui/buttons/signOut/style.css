@@ -1,4 +1,4 @@
-.signout {
+button {
 	/* Basic Styling */
 	display: inline-block;
 	padding: 10px 20px;
@@ -20,12 +20,12 @@
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.signout-btn:hover {
+button:hover {
 	background-color: #c82333;
 	/* Slightly darker red on hover */
 }
 
-.signout-btn:active {
+button:active {
 	background-color: #bd2130;
 	/* Even darker when clicked */
 	transform: translateY(1px);

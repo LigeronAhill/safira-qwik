@@ -1,8 +1,10 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
+import style from "./style.css?inline";
 
-export const Logo = component$(() => {
+export const Logo = component$(({ size = "2em" }: { size?: string }) => {
+	useStylesScoped$(style);
 	return (
-		<figure style="width: 100px; height: 100px; margin-left: 20px;">
+		<figure style={`width: ${size}; height: ${size};`}>
 			<svg
 				width="100%"
 				viewBox="0 0 946 675"

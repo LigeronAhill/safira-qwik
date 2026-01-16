@@ -1,5 +1,6 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { Logo } from "~/assets/icons/logo";
+import { Logo } from "~/assets/icons";
+import { ThemeToggle } from "../ui/buttons";
 import style from "./style.css?inline";
 
 export const Pallete = component$(() => {
@@ -7,12 +8,15 @@ export const Pallete = component$(() => {
 	return (
 		<div class="container">
 			<header>
-				<h1>🎨 Цветовая палитра</h1>
-				<Logo />
-				<p class="subtitle">
-					Демонстрация всех цветовых переменных с поддержкой светлой и тёмной
-					тем
-				</p>
+				<h1 style="text-align: center;">🎨 Цветовая палитра</h1>
+				<div class="logo-container">
+					<Logo />
+					<p class="subtitle">
+						Демонстрация всех цветовых переменных с поддержкой светлой и тёмной
+						тем
+					</p>
+					<ThemeToggle />
+				</div>
 			</header>
 
 			<div class="color-sections">

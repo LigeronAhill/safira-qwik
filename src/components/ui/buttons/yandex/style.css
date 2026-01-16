@@ -1,0 +1,30 @@
+button.wide {
+	display: flex;
+	align-items: center;
+	background-color: black;
+	color: white;
+	border: none;
+	border-radius: 11px;
+	font-size: 15px;
+	width: 228px;
+	height: 44px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button.wide:hover {
+	background-color: #2c3136;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button.wide:active {
+	transform: translateY(0);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button.rounded:hover {
+	transform: rotate(25deg);
+}

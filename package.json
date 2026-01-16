@@ -51,14 +51,13 @@
 		"typescript-plugin-css-modules": "latest",
 		"undici": "*",
 		"vite": "7.2.6",
-		"vite-tsconfig-paths": "^4.2.1"
-	},
-	"dependencies": {
+		"vite-tsconfig-paths": "^4.2.1",
 		"@auth/drizzle-adapter": "^1.11.1",
 		"@fontsource-variable/montserrat": "^5.2.8",
 		"@fontsource/chocolate-classical-sans": "^5.2.11",
 		"@fontsource/forum": "^5.2.8",
 		"@fontsource/material-icons": "^5.2.7",
+		"@fontsource-variable/jetbrains-mono": "^5.2.8",
 		"dotenv": "^17.2.3",
 		"pg": "^8.16.3"
 	}

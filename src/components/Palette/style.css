@@ -1,8 +1,16 @@
-.subtitle {
+.logo-container {
 	font-size: 1.1rem;
-	color: var(--text-muted);
-	max-width: 600px;
-	margin: 0 auto;
+	display: flex;
+	width: 100%;
+	gap: 1rem;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+	margin: 1rem auto;
+}
+
+.subtitle {
+	max-width: 800px;
 }
 
 .color-sections {
@@ -64,7 +72,7 @@
 }
 
 .color-value {
-	font-family: 'Courier New', monospace;
+	font-family: "Courier New", monospace;
 	font-size: 0.9rem;
 	color: var(--text-muted);
 	background-color: var(--bg-dark);

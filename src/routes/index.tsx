@@ -1,8 +1,12 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import { GithubButton } from "~/components/GithubButton";
-import { SignOutButton } from "~/components/SignOutButton";
-import { YandexButton } from "../components/YandexButton";
+import {
+	ActiveButton,
+	GithubButton,
+	SignOutButton,
+	ThemeToggle,
+	YandexButton,
+} from "~/components/ui/buttons";
 import { useSession } from "./plugin@auth";
 
 export default component$(() => {
@@ -14,9 +18,9 @@ export default component$(() => {
 			<h1>
 				Hi 👋 {authorized && <span>{`${session.value.user?.name}`}</span>}
 			</h1>
+			<ThemeToggle />
 			<div>
-				Can't wait to see what you build with qwik!
-				<br />
+				<p>Can't wait to see what you build with qwik!</p>
 				Happy coding.
 				{authorized ? (
 					<>
@@ -41,6 +45,12 @@ export default component$(() => {
 			<h4>Четвертый</h4>
 			<h5>Пятый</h5>
 			<h6>Шестой</h6>
+			<div class="container" style="margin: 1rem;">
+				<ActiveButton>
+					Text
+					<figure class="material-icons">info</figure>
+				</ActiveButton>
+			</div>
 			<p>
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
 				pariatur assumenda similique natus quo eius fuga rerum, possimus fugit
