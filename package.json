@@ -22,11 +22,11 @@
 		"drizzle:push": "drizzle-kit push",
 		"drizzle:studio": "drizzle-kit studio",
 		"drizzle:up": "drizzle-kit up",
-		"fmt": "prettier --write .",
+		"fmt": "biome check --write .",
 		"fmt.check": "prettier --check .",
 		"lint": "eslint \"src/**/*.ts*\"",
 		"postinstall": "drizzle-kit generate",
-		"preview": "qwik build preview && vite preview --open",
+		"preview": "qwik build preview && vite preview --port 5173 --open",
 		"start": "vite --open --mode ssr",
 		"qwik": "qwik"
 	},
@@ -55,7 +55,9 @@
 	},
 	"dependencies": {
 		"@auth/drizzle-adapter": "^1.11.1",
+		"@fontsource-variable/montserrat": "^5.2.8",
 		"@fontsource/chocolate-classical-sans": "^5.2.11",
+		"@fontsource/forum": "^5.2.8",
 		"@fontsource/material-icons": "^5.2.7",
 		"dotenv": "^17.2.3",
 		"pg": "^8.16.3"

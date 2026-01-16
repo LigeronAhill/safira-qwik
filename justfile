@@ -19,6 +19,11 @@ help:
 watch: biome-check
     bun run dev
 
+# Preview app
+[group("app")]
+preview:
+    bun run preview
+
 # Create new component
 [group("qwik")]
 component NAME:

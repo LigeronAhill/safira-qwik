@@ -12,6 +12,7 @@ import {
 
 export const { onRequest, useSession, useSignIn, useSignOut } = QwikAuth$(
 	() => ({
+		trustHost: true,
 		providers: [
 			GitHub({
 				profile(profile) {

@@ -9,8 +9,9 @@ import {
 	useSignal,
 } from "@builder.io/qwik";
 import "@fontsource/chocolate-classical-sans";
+import "@fontsource-variable/montserrat";
+import "@fontsource/forum";
 import "@fontsource/material-icons";
-import { ThemeToggle } from "~/components";
 
 export const ThemeContext =
 	createContextId<Signal<boolean>>("docs.theme-context");
@@ -31,12 +32,6 @@ export default component$(() => {
 				stored === "dark" || (stored === null && prefersDark.matches);
 			isDark.value = initialDark;
 
-			// Применяем тему
-			document.documentElement.setAttribute(
-				"data-theme",
-				isDark.value ? "dark" : "light",
-			);
-
 			// Слушаем системные изменения темы
 			const updateFromSystem = (e: MediaQueryListEvent) => {
 				if (!localStorage.getItem("theme")) {
@@ -56,28 +51,9 @@ export default component$(() => {
 		}),
 	);
 
-	// Отслеживаем клики для переключения темы
-	useOnDocument(
-		"click",
-		$((event) => {
-			const target = event.target as HTMLElement;
-			const themeToggle = target.closest("[data-theme-toggle]");
-
-			if (themeToggle) {
-				isDark.value = !isDark.value;
-				localStorage.setItem("theme", isDark.value ? "dark" : "light");
-				document.documentElement.setAttribute(
-					"data-theme",
-					isDark.value ? "dark" : "light",
-				);
-				event.preventDefault();
-			}
-		}),
-	);
 	return (
 		<>
-			<ThemeToggle />
-			<Slot />;
+			<Slot />
 		</>
 	);
 });
